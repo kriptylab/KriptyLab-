@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from 'astro:content';
+import SectorLayout from '../../layouts/SectorLayout.astro';
+
+export async function getStaticPaths() {
+  const settoriEntries = await getCollection('settori');
+  return settoriEntries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<SectorLayout 
+  sector={entry.data.sector} 
+  keyword={entry.data.keyword} 
+  description={entry.data.description} 
+  painPoints={entry.data.painPoints} 
+  solutions={entry.data.solutions}
+  faqs={entry.data.faq}
+>
+  <Content />
+</SectorLayout>

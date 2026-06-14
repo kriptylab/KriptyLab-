@@ -1,0 +1,134 @@
+﻿---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+---
+<BaseLayout title="Blog & Risorse Tecniche | KriptyLab" description="Approfondimenti ingegneristici, guide all'AI on-premise e architettura software per PMI.">
+  <section class="hero-page">
+    <div class="container">
+      <div class="reveal-up">
+        <span class="badge">Blog</span>
+      </div>
+      <h1 class="page-title reveal-up delay-100">Risorse & <span class="text-gradient">Guide.</span></h1>
+      <p class="page-subtitle reveal-up delay-200">
+        Analisi tecniche, guide pratiche e best practice di ingegneria software per imprenditori e CTO.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="blog-grid">
+        {posts.map((post, index) => (
+          <a href={`/blog/${post.id}`} class={`card blog-card reveal-up`} style={`transition-delay: ${(index % 6) * 60}ms`}>
+            <div class="blog-card-inner">
+              {post.data.keyword && (
+                <span class="blog-keyword">{post.data.keyword}</span>
+              )}
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+              <span class="arrow-link">
+                Leggi Articolo
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-page {
+    padding: 8rem 0 3rem;
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+  }
+  .hero-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(0, 122, 255, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .page-title {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .page-subtitle {
+    font-size: 1.15rem;
+    color: var(--color-text-secondary);
+    max-width: 560px;
+    text-wrap: balance;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .blog-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .blog-card {
+    text-decoration: none;
+  }
+
+  .blog-card-inner {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .blog-keyword {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    transition: color var(--duration-fast) ease;
+  }
+
+  .blog-card:hover h3 {
+    color: var(--color-accent);
+  }
+
+  .blog-card p {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-card .arrow-link {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 14px;
+  }
+</style>

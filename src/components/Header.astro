@@ -1,0 +1,273 @@
+---
+// src/components/Header.astro
+const navLinks = [
+  { href: '/servizi', label: 'Servizi' },
+  { href: '/progetti', label: 'Progetti' },
+  { href: '/chi-siamo', label: 'Chi Siamo' },
+  { href: '/blog', label: 'Blog' },
+];
+---
+
+<header id="site-header" class="site-header">
+  <div class="container">
+    <nav class="nav">
+      <a href="/" class="logo" aria-label="KriptyLab Homepage">
+        Kripty<span class="logo-accent">Lab</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <ul class="nav-links">
+        {navLinks.map(link => (
+          <li><a href={link.href} class="nav-link">{link.label}</a></li>
+        ))}
+        <li>
+          <a href="/contatti" class="btn btn-primary btn-nav">Consulenza Gratuita</a>
+        </li>
+      </ul>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="mobile-btn" aria-label="Apri Menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <line x1="4" y1="7" x2="20" y2="7" class="line-top"/>
+          <line x1="4" y1="12" x2="20" y2="12" class="line-mid"/>
+          <line x1="4" y1="17" x2="20" y2="17" class="line-bot"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="mobile-overlay" aria-hidden="true">
+    <div class="mobile-overlay-content">
+      <button id="close-menu-btn" class="close-btn" aria-label="Chiudi Menu">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <line x1="6" y1="6" x2="18" y2="18"/>
+          <line x1="6" y1="18" x2="18" y2="6"/>
+        </svg>
+      </button>
+
+      <nav class="mobile-nav">
+        {navLinks.map((link, i) => (
+          <a href={link.href} class="mobile-nav-link" style={`transition-delay: ${(i + 1) * 60}ms`}>
+            {link.label}
+          </a>
+        ))}
+        <a href="/contatti" class="btn btn-primary btn-lg mobile-cta" style={`transition-delay: ${(navLinks.length + 1) * 60}ms`}>
+          Richiedi Consulenza
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: saturate(1.8) blur(28px);
+    -webkit-backdrop-filter: saturate(1.8) blur(28px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    transition: all var(--duration-base) ease;
+  }
+
+  .site-header.scrolled {
+    background: rgba(0, 0, 0, 0.82);
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 1px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--color-text-primary);
+    letter-spacing: -0.04em;
+    text-decoration: none;
+    transition: opacity var(--duration-fast) ease;
+  }
+  .logo:hover { opacity: 0.8; }
+  .logo-accent { color: var(--color-accent); }
+
+  .nav-links {
+    display: none;
+    list-style: none;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .nav-links { display: flex; }
+    .mobile-btn { display: none !important; }
+  }
+
+  .nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: color var(--duration-fast) ease;
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-accent);
+    transition: width var(--duration-base) var(--ease-out-expo);
+  }
+  .nav-link:hover {
+    color: var(--color-text-primary);
+  }
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .btn-nav {
+    padding: 0.5rem 1.2rem;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* Mobile button */
+  .mobile-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    padding: 0.25rem;
+    z-index: 110;
+  }
+
+  /* Mobile Overlay */
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: saturate(1.8) blur(40px);
+    -webkit-backdrop-filter: saturate(1.8) blur(40px);
+    z-index: 105;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--duration-base) ease, visibility var(--duration-base) ease;
+  }
+  .mobile-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-overlay-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.5rem;
+  }
+
+  .close-btn {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color var(--duration-fast) ease;
+  }
+  .close-btn:hover { color: var(--color-text-primary); }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 1.5rem;
+  }
+
+  .mobile-nav-link {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    letter-spacing: -0.03em;
+    transition: color var(--duration-fast) ease, transform var(--duration-base) var(--ease-out-expo), opacity var(--duration-base) ease;
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  .mobile-nav-link:hover { color: var(--color-text-primary); }
+  .mobile-overlay.is-open .mobile-nav-link {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .mobile-cta {
+    margin-top: 1rem;
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  .mobile-overlay.is-open .mobile-cta {
+    transform: translateY(0);
+    opacity: 1;
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const closeBtn = document.getElementById('close-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const header = document.getElementById('site-header');
+
+  // Mobile menu toggle
+  if (btn && closeBtn && menu) {
+    btn.addEventListener('click', () => {
+      menu.classList.add('is-open');
+      menu.setAttribute('aria-hidden', 'false');
+      btn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    });
+
+    const closeMenu = () => {
+      menu.classList.remove('is-open');
+      menu.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    };
+
+    closeBtn.addEventListener('click', closeMenu);
+
+    // Close on link click
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+  }
+
+  // Header scroll behavior
+  if (header) {
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          header.classList.toggle('scrolled', window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>

@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  schema?: Record<string, any>;
+}
+
+const { title, description, schema } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!-- SEO Base -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+<meta name="theme-color" content="#0a0a0b" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:site_name" content="KriptyLab" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+
+<!-- JSON-LD Schema (Organization is always present, plus page specific) -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": ["Organization", "ProfessionalService"],
+  "@id": `${Astro.site}#organization`,
+  "name": "KriptyLab",
+  "url": Astro.site,
+  "description": "Studio di sviluppo software, implementazione AI, assemblaggio hardware e consulenza cybersecurity per PMI italiane.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IT"
+  }
+})} />
+
+{schema && (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+)}

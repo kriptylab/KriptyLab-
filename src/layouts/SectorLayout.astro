@@ -1,0 +1,233 @@
+﻿---
+import BaseLayout from './BaseLayout.astro';
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  sector: string;
+  keyword: string;
+  description?: string;
+  geoDefinition?: string;
+  painPoints: string[];
+  solutions: { title: string; desc: string; fact?: string }[];
+  faqs?: FAQ[];
+}
+
+const { sector, keyword, geoDefinition = "", description = "", painPoints = [], solutions = [], faqs = [] } = Astro.props;
+
+const faqSchema = faqs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+} : undefined;
+---
+
+<BaseLayout title={`Soluzioni IT per ${sector} | KriptyLab`} description={geoDefinition || description} schema={faqSchema}>
+  <article class="sector-page">
+    <!-- Hero -->
+    <header class="sector-hero">
+      <div class="container">
+        <div class="reveal-up">
+          <span class="badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            {sector}
+          </span>
+        </div>
+        <h1 class="sector-title reveal-up delay-100">
+          Infrastruttura IT e AI per <span class="text-gradient">{sector}</span>
+        </h1>
+        {geoDefinition && (
+          <p class="sector-subtitle reveal-up delay-200">{geoDefinition}</p>
+        )}
+      </div>
+    </header>
+
+    <!-- Pain Points -->
+    <section class="section section-border">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <h2>Le Sfide del Settore</h2>
+          <div class="line"></div>
+        </div>
+        <ul class="check-list reveal-up delay-100">
+          {painPoints.map(point => (
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="check-icon">
+                <path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Solutions -->
+    <section class="section section-border">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <h2>Soluzioni KriptyLab</h2>
+          <div class="line"></div>
+        </div>
+        <div class="solutions-grid">
+          {solutions.map((sol, index) => (
+            <div class={`card sol-card reveal-up`} style={`transition-delay: ${(index + 1) * 80}ms`}>
+              <div class="sol-card-inner">
+                <h3>{sol.title}</h3>
+                <p>{sol.desc}</p>
+                {sol.fact && <div class="fact-badge">{sol.fact}</div>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Markdown Content Slot -->
+    <section class="section section-border">
+      <div class="container reveal-up">
+        <div class="prose">
+          <slot />
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    {faqs.length > 0 && (
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-header reveal-up">
+            <h2>Domande Frequenti (FAQ)</h2>
+            <div class="line"></div>
+          </div>
+          <div class="faq-list reveal-up delay-100">
+            {faqs.map(faq => (
+              <details class="faq-item">
+                <summary>{faq.question}</summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- CTA -->
+    <section class="section section-border">
+      <div class="container cta-sector reveal-up">
+        <h2 class="cta-title">Hai bisogno di soluzioni IT per {sector}?</h2>
+        <p class="cta-desc">Parla direttamente con un nostro architetto software. Zero intermediari.</p>
+        <a href="/contatti" class="btn btn-primary btn-lg">Richiedi Consulenza Gratuita</a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .sector-page {
+    padding-bottom: 0;
+  }
+
+  .sector-hero {
+    padding: 8rem 0 4rem;
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+  }
+
+  .sector-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(0, 122, 255, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .sector-title {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .sector-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    max-width: 680px;
+    line-height: 1.7;
+    margin-top: 0.5rem;
+  }
+
+  .check-icon {
+    color: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .sol-card-inner {
+    padding: 2rem;
+  }
+
+  .sol-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .sol-card p {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .fact-badge {
+    margin-top: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--color-accent-subtle);
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-md);
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent-border);
+    line-height: 1.5;
+  }
+
+  .cta-sector {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+  }
+
+  .cta-desc {
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+</style>

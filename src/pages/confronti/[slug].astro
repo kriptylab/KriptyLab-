@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import VsLayout from '../../layouts/VsLayout.astro';
+
+export async function getStaticPaths() {
+  const confrontiEntries = await getCollection('confronti');
+  return confrontiEntries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<VsLayout 
+  topic={entry.data.topic}
+  nameA={entry.data.nameA}
+  nameB={entry.data.nameB}
+  geoDefinition={entry.data.geoDefinition}
+  comparisonData={entry.data.comparisonData}
+  whenToChooseA={entry.data.whenToChooseA}
+  whenToChooseB={entry.data.whenToChooseB}
+  faqs={entry.data.faq}
+>
+  <Content />
+</VsLayout>

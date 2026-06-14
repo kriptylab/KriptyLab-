@@ -1,0 +1,399 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const title = "KriptyLab | Sviluppo Software e AI";
+const description = "Infrastrutture IT evolute. Sviluppo software su misura, intelligenza artificiale on-premise e cybersicurezza per PMI.";
+
+const allServices = await getCollection('servizi');
+const sitiWeb = allServices.find(s => s.id === 'sviluppo-siti-web');
+const otherServices = allServices.filter(s => s.id !== 'sviluppo-siti-web' && s.id !== 'index').slice(0, 3);
+const topServices = [sitiWeb, ...otherServices].filter(Boolean);
+
+const serviceIcons = {
+  'sviluppo-siti-web': '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+  'sviluppo-software': '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+  'implementazione-ai': '<path d="M12 2a4 4 0 0 0-4 4c0 2 2 3 2 6h4c0-3 2-4 2-6a4 4 0 0 0-4-4z"/><line x1="10" y1="16" x2="14" y2="16"/><line x1="10" y1="19" x2="14" y2="19"/><line x1="11" y1="22" x2="13" y2="22"/>',
+  'cybersecurity': '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+  'automazione-processi': '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>',
+  'gestionali-su-misura': '<rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
+  'consulenza-informatica': '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
+  'assemblaggio-hardware': '<rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>',
+};
+---
+
+<BaseLayout title={title} description={description}>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <!-- Background elements -->
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
+
+    <div class="container hero-inner">
+      <div class="hero-badge reveal-up">
+        <span class="badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/></svg>
+          Studio IT AI-First per PMI
+        </span>
+      </div>
+
+      <h1 class="hero-title reveal-up delay-100">
+        Software su misura.<br/>
+        <span class="text-gradient">AI senza nuvole.</span>
+      </h1>
+
+      <p class="hero-subtitle reveal-up delay-200">
+        Trasformiamo le PMI italiane con gestionali su misura, intelligenza artificiale on-premise e cybersicurezza avanzata. Controllo totale, design perfetto.
+      </p>
+
+      <div class="hero-actions reveal-up delay-300">
+        <a href="/contatti" class="btn btn-primary btn-lg">
+          Inizia il Progetto
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/servizi" class="btn btn-ghost btn-lg">
+          Esplora i Servizi
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVIZI CORE ═══ -->
+  <section class="section section-border">
+    <div class="container">
+      <div class="services-header reveal-up">
+        <h2 class="section-title">L'essenziale per il tuo business.</h2>
+        <p class="section-desc">
+          Strumenti potenti e sicuri per far scalare la tua azienda senza compromessi.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        {topServices.map((servizio, index) => (
+          <a href={`/servizi/${servizio?.id || 'undefined'}`} class={`card service-card reveal-up`} style={`transition-delay: ${(index + 1) * 80}ms`}>
+            <div class="service-card-inner">
+              <div class="service-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={serviceIcons[servizio?.id ?? 'sviluppo-software'] ?? serviceIcons['sviluppo-software']}/>
+              </div>
+              <h3>{servizio?.data?.title || 'Servizio'}</h3>
+              <p>{servizio?.data?.description || ''}</p>
+              <span class="arrow-link">
+                Scopri di più
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="services-all reveal-up">
+        <a href="/servizi" class="btn btn-ghost">
+          Visualizza tutti i servizi
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STATS ═══ -->
+  <section class="section section-border">
+    <div class="container">
+      <div class="stats-grid reveal-up">
+        <div class="stat-item">
+          <span class="stat-number">10+</span>
+          <span class="stat-label">Soluzioni Custom</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Progetti Consegnati</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">12</span>
+          <span class="stat-label">Settori Coperti</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">99.9%</span>
+          <span class="stat-label">Uptime Garantito</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA FINALE ═══ -->
+  <section class="section section-border cta-section">
+    <div class="cta-glow"></div>
+    <div class="container cta-inner reveal-up">
+      <h2 class="cta-title">
+        Facciamo grandi cose <span class="text-gradient">insieme.</span>
+      </h2>
+      <p class="cta-desc">
+        Parla con i nostri architetti software. Nessun intermediario, solo soluzioni concrete per la tua azienda.
+      </p>
+      <a href="/contatti" class="btn btn-primary btn-lg">
+        Prenota una Consulenza
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 1.5rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1000px;
+    height: 700px;
+    background: radial-gradient(
+      ellipse,
+      rgba(0, 122, 255, 0.09) 0%,
+      rgba(52, 170, 220, 0.04) 40%,
+      transparent 68%
+    );
+    pointer-events: none;
+  }
+
+  /* Dot grid background */
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-badge {
+    margin-bottom: 2rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.6rem, 5vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    color: var(--color-text-secondary);
+    max-width: 640px;
+    text-wrap: balance;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  /* Services */
+  .services-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    letter-spacing: -0.04em;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    max-width: 520px;
+    margin: 0 auto;
+    text-wrap: balance;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .service-card {
+    text-decoration: none;
+  }
+
+  .service-card-inner {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .service-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: var(--color-accent-subtle);
+    border: 1px solid var(--color-accent-border);
+    color: var(--color-accent);
+    margin-bottom: 1.25rem;
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.12);
+  }
+
+  .service-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.02em;
+  }
+
+  .service-card p {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-card .arrow-link {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 14px;
+  }
+
+  .services-all {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  /* Stats */
+  .stats-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .stats-grid { gap: 3rem; }
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 500;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 48px;
+    background: var(--color-border);
+  }
+
+  @media (max-width: 640px) {
+    .stat-divider { display: none; }
+    .stats-grid { gap: 2rem; }
+    .stat-item { min-width: 120px; }
+  }
+
+  /* CTA */
+  .cta-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-glow {
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(
+      ellipse,
+      rgba(0, 122, 255, 0.06) 0%,
+      rgba(52, 170, 220, 0.02) 45%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    text-align: center;
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  .cta-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    letter-spacing: -0.04em;
+    margin-bottom: 1.25rem;
+    text-wrap: balance;
+  }
+
+  .cta-desc {
+    font-size: 1.15rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+    text-wrap: balance;
+  }
+</style>

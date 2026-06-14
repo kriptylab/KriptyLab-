@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Privacy Policy | KriptyLab" description="Informativa sulla privacy di KriptyLab. Come trattiamo e proteggiamo i tuoi dati.">
+  <section class="hero-page">
+    <div class="container">
+      <div class="reveal-up">
+        <h1 class="legal-title">Privacy Policy</h1>
+        <p class="legal-date">Ultimo aggiornamento: 11 Giugno 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container legal-content reveal-up delay-100">
+      <div class="legal-block">
+        <h2>1. Titolare del Trattamento</h2>
+        <p>Il titolare del trattamento è <strong>KriptyLab</strong>, con sede legale in Italia. Per qualsiasi richiesta relativa alla privacy o per esercitare i tuoi diritti, puoi contattarci all'indirizzo email dedicato fornito nella sezione contatti.</p>
+      </div>
+      <div class="legal-block">
+        <h2>2. Dati Raccolti</h2>
+        <p>Raccogliamo dati personali esclusivamente per poter rispondere alle tue richieste inviate tramite il modulo di contatto (Nome, Cognome, Nome Azienda, Email Lavorativa e Messaggio). Non effettuiamo profilazione né raccogliamo dati sensibili.</p>
+      </div>
+      <div class="legal-block">
+        <h2>3. Finalità del Trattamento</h2>
+        <p>I dati raccolti vengono utilizzati unicamente per:</p>
+        <ul>
+          <li>Rispondere alle richieste di informazioni o di preventivo.</li>
+          <li>Fornire la consulenza tecnica concordata.</li>
+          <li>Adempiere ad obblighi di legge o normativi.</li>
+        </ul>
+      </div>
+      <div class="legal-block">
+        <h2>4. Conservazione dei Dati</h2>
+        <p>I tuoi dati vengono conservati per il tempo strettamente necessario all'evasione della richiesta o all'erogazione del servizio, nel rispetto delle norme vigenti in materia di conservazione dei dati commerciali e fiscali.</p>
+      </div>
+      <div class="legal-block">
+        <h2>5. Diritti dell'Interessato (GDPR)</h2>
+        <p>Ai sensi del Regolamento Europeo 2016/679 (GDPR), hai il diritto in qualsiasi momento di ottenere la conferma dell'esistenza dei tuoi dati, chiederne l'accesso, la rettifica, la cancellazione (diritto all'oblio), la limitazione del trattamento o di opporti al loro utilizzo. Puoi inviare una richiesta scritta al nostro indirizzo email.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-page { padding: 8rem 0 2rem; border-bottom: 1px solid var(--color-border); }
+  .legal-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+  .legal-date { font-size: 14px; color: var(--color-text-muted); }
+  .legal-content { max-width: 720px; }
+  .legal-block { margin-bottom: 2.5rem; }
+  .legal-block h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+  .legal-block p { color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 0.75rem; }
+  .legal-block ul { padding-left: 1.5rem; color: var(--color-text-secondary); line-height: 1.7; }
+  .legal-block li { margin-bottom: 0.4rem; }
+</style>

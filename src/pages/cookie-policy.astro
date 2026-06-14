@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Cookie Policy | KriptyLab" description="Informativa sui cookie di KriptyLab. Scopri come utilizziamo i cookie per migliorare l'esperienza.">
+  <section class="hero-page">
+    <div class="container">
+      <div class="reveal-up">
+        <h1 class="legal-title">Cookie Policy</h1>
+        <p class="legal-date">Ultimo aggiornamento: 11 Giugno 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container legal-content reveal-up delay-100">
+      <div class="legal-block">
+        <h2>1. Cosa sono i Cookie?</h2>
+        <p>I cookie sono piccoli file di testo che i siti visitati dall'utente inviano al suo browser, dove vengono memorizzati per essere poi ritrasmessi agli stessi siti alla successiva visita del medesimo utente.</p>
+      </div>
+      <div class="legal-block">
+        <h2>2. Cookie Utilizzati da questo Sito</h2>
+        <p>Questo sito web utilizza solo <strong>cookie tecnici essenziali</strong>, necessari per il corretto funzionamento delle pagine e la sicurezza dell'infrastruttura. Non utilizziamo cookie di terze parti o cookie di profilazione per scopi pubblicitari.</p>
+      </div>
+      <div class="legal-block">
+        <h2>3. Disabilitazione dei Cookie</h2>
+        <p>L'utente può scegliere di abilitare o disabilitare i cookie modificando le impostazioni del proprio browser di navigazione secondo le istruzioni rese disponibili dai relativi fornitori (es. Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge). Si prega di notare che disattivando i cookie tecnici alcune funzionalità del sito potrebbero non funzionare correttamente.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-page { padding: 8rem 0 2rem; border-bottom: 1px solid var(--color-border); }
+  .legal-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+  .legal-date { font-size: 14px; color: var(--color-text-muted); }
+  .legal-content { max-width: 720px; }
+  .legal-block { margin-bottom: 2.5rem; }
+  .legal-block h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+  .legal-block p { color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 0.75rem; }
+</style>

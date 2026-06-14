@@ -1,0 +1,295 @@
+﻿---
+import BaseLayout from './BaseLayout.astro';
+
+interface ComparisonPoint {
+  feature: string;
+  itemA: string;
+  itemB: string;
+  winner: 'A' | 'B' | 'Tie';
+}
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  topic: string;
+  nameA: string;
+  nameB: string;
+  geoDefinition?: string;
+  comparisonData: ComparisonPoint[];
+  whenToChooseA?: string[];
+  whenToChooseB?: string[];
+  faqs?: FAQ[];
+}
+
+const { topic, nameA, nameB, geoDefinition = "", comparisonData = [], whenToChooseA = [], whenToChooseB = [], faqs = [] } = Astro.props;
+
+const faqSchema = faqs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+} : undefined;
+---
+
+<BaseLayout title={`${nameA} vs ${nameB}: Quale Scegliere? | KriptyLab`} description={geoDefinition} schema={faqSchema}>
+  <article class="vs-page">
+    <!-- Hero -->
+    <header class="vs-hero">
+      <div class="container">
+        <div class="reveal-up">
+          <span class="badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+            {topic}
+          </span>
+        </div>
+        <h1 class="vs-title reveal-up delay-100">
+          {nameA} <span class="vs-separator">vs</span> {nameB}
+        </h1>
+        {geoDefinition && (
+          <p class="vs-subtitle reveal-up delay-200">{geoDefinition}</p>
+        )}
+      </div>
+    </header>
+
+    <!-- Comparison Table -->
+    <section class="section section-border">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <h2>Confronto Diretto</h2>
+          <div class="line"></div>
+        </div>
+        <div class="table-container reveal-up delay-100">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Funzionalità</th>
+                <th>{nameA}</th>
+                <th>{nameB}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonData.map(row => (
+                <tr>
+                  <td class="feature-col">{row.feature}</td>
+                  <td class={row.winner === 'A' ? 'winner' : ''}>{row.itemA}</td>
+                  <td class={row.winner === 'B' ? 'winner' : ''}>{row.itemB}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- When to Choose -->
+    <section class="section section-border">
+      <div class="container">
+        <div class="scenarios-grid">
+          <div class="card scenario-card reveal-up">
+            <div class="scenario-inner">
+              <h3>Quando scegliere <span class="text-gradient">{nameA}</span></h3>
+              <ul class="scenario-list">
+                {whenToChooseA.map(item => (
+                  <li>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="check-icon">
+                      <path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div class="card scenario-card reveal-up delay-100">
+            <div class="scenario-inner">
+              <h3>Quando scegliere <span class="text-secondary-highlight">{nameB}</span></h3>
+              <ul class="scenario-list">
+                {whenToChooseB.map(item => (
+                  <li>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="check-icon-alt">
+                      <path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Markdown Content Slot -->
+    <section class="section section-border">
+      <div class="container reveal-up">
+        <div class="prose">
+          <slot />
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    {faqs.length > 0 && (
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-header reveal-up">
+            <h2>Domande Frequenti su {topic}</h2>
+            <div class="line"></div>
+          </div>
+          <div class="faq-list reveal-up delay-100">
+            {faqs.map(faq => (
+              <details class="faq-item">
+                <summary>{faq.question}</summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- CTA -->
+    <section class="section section-border">
+      <div class="container cta-vs reveal-up">
+        <h2 class="cta-title">Non sai quale scegliere?</h2>
+        <p class="cta-desc">Parla con un nostro architetto software. Ti aiutiamo a fare la scelta giusta per il tuo business.</p>
+        <a href="/contatti" class="btn btn-primary btn-lg">Parliamone Insieme</a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .vs-page {
+    padding-bottom: 0;
+  }
+
+  .vs-hero {
+    padding: 8rem 0 4rem;
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+  }
+
+  .vs-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(0, 122, 255, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .vs-title {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .vs-separator {
+    color: var(--color-text-muted);
+    font-weight: 400;
+    font-style: italic;
+    margin: 0 0.15em;
+  }
+
+  .vs-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    max-width: 680px;
+    line-height: 1.7;
+    margin-top: 0.5rem;
+  }
+
+  .scenarios-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 768px) {
+    .scenarios-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .scenario-inner {
+    padding: 2.5rem;
+  }
+
+  .scenario-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .text-secondary-highlight {
+    color: var(--color-text-secondary);
+  }
+
+  .scenario-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .scenario-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .scenario-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .check-icon {
+    color: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .check-icon-alt {
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .cta-vs {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+  }
+
+  .cta-desc {
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+</style>

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/porco/Desktop/sito verticale portfolio/seo-geo-claude-skills/**)",
+      "Read(//c/Users/porco/Desktop/sito verticale portfolio/webapp-testing/**)",
+      "Read(//c/Users/porco/.claude/**)",
+      "Read(//c/Users/porco/.claude/skills/**)",
+      "Bash(ls \"C:\\\\Users\\\\porco\\\\Desktop\\\\sito verticale portfolio\\\\skill\")",
+      "Read(//c/Users/porco/Desktop/sito verticale portfolio/skill/**)",
+      "Bash(ls -la \"C:\\\\Users\\\\porco\\\\Desktop\\\\sito verticale portfolio\\\\frontend-design\")",
+      "Read(//c/Users/porco/Desktop/sito verticale portfolio/frontend-design/**)"
+    ]
+  }
+}
