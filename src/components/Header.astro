@@ -35,30 +35,30 @@ const navLinks = [
       </button>
     </nav>
   </div>
-
-  <!-- Mobile Menu Overlay -->
-  <div id="mobile-menu" class="mobile-overlay" aria-hidden="true">
-    <div class="mobile-overlay-content">
-      <button id="close-menu-btn" class="close-btn" aria-label="Chiudi Menu">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-          <line x1="6" y1="6" x2="18" y2="18"/>
-          <line x1="6" y1="18" x2="18" y2="6"/>
-        </svg>
-      </button>
-
-      <nav class="mobile-nav">
-        {navLinks.map((link, i) => (
-          <a href={link.href} class="mobile-nav-link" style={`transition-delay: ${(i + 1) * 60}ms`}>
-            {link.label}
-          </a>
-        ))}
-        <a href="/contatti" class="btn btn-primary btn-lg mobile-cta" style={`transition-delay: ${(navLinks.length + 1) * 60}ms`}>
-          Richiedi Consulenza
-        </a>
-      </nav>
-    </div>
-  </div>
 </header>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="mobile-overlay" aria-hidden="true">
+  <div class="mobile-overlay-content">
+    <button id="close-menu-btn" class="close-btn" aria-label="Chiudi Menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <line x1="6" y1="6" x2="18" y2="18"/>
+        <line x1="6" y1="18" x2="18" y2="6"/>
+      </svg>
+    </button>
+
+    <nav class="mobile-nav">
+      {navLinks.map((link, i) => (
+        <a href={link.href} class="mobile-nav-link" style={`transition-delay: ${(i + 1) * 60}ms`}>
+          {link.label}
+        </a>
+      ))}
+      <a href="/contatti" class="btn btn-primary btn-lg mobile-cta" style={`transition-delay: ${(navLinks.length + 1) * 60}ms`}>
+        Richiedi Consulenza
+      </a>
+    </nav>
+  </div>
+</div>
 
 <style>
   .site-header {
@@ -161,7 +161,7 @@ const navLinks = [
     background: rgba(0, 0, 0, 0.95);
     backdrop-filter: saturate(1.8) blur(40px);
     -webkit-backdrop-filter: saturate(1.8) blur(40px);
-    z-index: 105;
+    z-index: 120;
     opacity: 0;
     visibility: hidden;
     transition: opacity var(--duration-base) ease, visibility var(--duration-base) ease;

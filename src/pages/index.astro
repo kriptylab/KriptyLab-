@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const title = "KriptyLab | Sviluppo Software e AI";
-const description = "Infrastrutture IT evolute. Sviluppo software su misura, intelligenza artificiale on-premise e cybersicurezza per PMI.";
+const description = "Infrastrutture IT evolute. Sviluppo software su misura, intelligenza artificiale locale e cybersicurezza per PMI.";
 
 const allServices = await getCollection('servizi');
 const sitiWeb = allServices.find(s => s.id === 'sviluppo-siti-web');
@@ -44,7 +44,7 @@ const serviceIcons = {
       </h1>
 
       <p class="hero-subtitle reveal-up delay-200">
-        Trasformiamo le PMI italiane con gestionali su misura, intelligenza artificiale on-premise e cybersicurezza avanzata. Controllo totale, design perfetto.
+        Trasformiamo le PMI italiane con gestionali su misura, intelligenza artificiale locale e cybersicurezza avanzata. Controllo totale, design perfetto.
       </p>
 
       <div class="hero-actions reveal-up delay-300">

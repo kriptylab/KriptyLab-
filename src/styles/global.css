@@ -759,6 +759,45 @@ textarea.form-input {
 
 
 /* ═══════════════════════════════════════════════════════
+   Accessibility — Focus visible (keyboard navigation)
+   ═══════════════════════════════════════════════════════ */
+
+/* Remove default outline only when not keyboard navigating */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Clear, accessible focus ring for keyboard users */
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Tighter radius on buttons/badges that already have border-radius */
+.btn:focus-visible,
+.tag:focus-visible,
+.badge:focus-visible,
+.back-link:focus-visible,
+.arrow-link:focus-visible {
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* Nav links */
+.nav-link:focus-visible {
+  outline-offset: 6px;
+  border-radius: 6px;
+}
+
+/* Cards used as links */
+.card:focus-visible,
+.service-card:focus-visible {
+  outline-offset: 4px;
+  border-radius: 14px;
+}
+
+/* ═══════════════════════════════════════════════════════
    Responsive
    ═══════════════════════════════════════════════════════ */
 

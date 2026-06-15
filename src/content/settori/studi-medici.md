@@ -19,7 +19,7 @@ Ogni settore industriale ha sfide uniche. Nel settore **Soluzioni IT per Studi M
 Sviluppiamo software gestionale, integraimo server AI locali e blindiamo le reti aziendali tenendo conto dei requisiti normativi e operativi di Soluzioni IT per Studi Medici e Ambulatori.
 
 1. **Digitalizzazione dei Processi**: Scopri di più su Soluzioni IT per Studi Medici e Ambulatori.
-2. **Conformità e Privacy**: Gestione dei dati tramite server on-premise per evitare l'invio di informazioni sensibili a terze parti esterne (GDPR compliance rigorosa).
+2. **Conformità e Privacy**: Gestione dei dati tramite server locali per evitare l'invio di informazioni sensibili a terze parti esterne (GDPR compliance rigorosa).
 3. **Scalabilità**: Architetture progettate per crescere insieme all'azienda, senza i colli di bottiglia tipici dei software monolitici commerciali.
 
 Scopri come il nostro team di ingegneri può rivoluzionare l'infrastruttura IT per Soluzioni IT per Studi Medici e Ambulatori.

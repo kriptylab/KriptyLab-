@@ -14,4 +14,4 @@ KriptyLab è specializzata nello sviluppo di questa e altre soluzioni avanzate, 
 
 - Architettura software solida.
 - Sicurezza proattiva e monitoraggio.
-- Intelligenza Artificiale integrata on-premise per la massima privacy.
+- Intelligenza Artificiale integrata locale per la massima privacy.

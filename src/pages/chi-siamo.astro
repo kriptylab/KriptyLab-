@@ -1,53 +1,265 @@
-﻿---
-import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="Chi Siamo | KriptyLab" description="Siamo architetti del software. Zero intermediari, zero fuffa, solo server e codice.">
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": ["Organization", "ProfessionalService"],
+  "@id": "https://kriptylab.it/#organization",
+  "name": "KriptyLab",
+  "alternateName": ["Shazark", "Shazark Srl"],
+  "legalName": "Shazark Srl",
+  "url": "https://kriptylab.it",
+  "description": "Studio di sviluppo software, implementazione AI, assemblaggio hardware e consulenza cybersecurity per PMI italiane.",
+  "disambiguatingDescription": "Shazark Srl è uno studio italiano di sviluppo software e consulenza IT con approccio AI-first. Opera con il brand KriptyLab per workstation e server AI locali. Combina sviluppo software full-stack, implementazione AI in azienda, assemblaggio hardware personalizzato e consulenza cybersecurity.",
+  "foundingDate": "2025",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IT"
+  },
+  "areaServed": [
+    {"@type": "Country", "name": "Italy"}
+  ],
+  "knowsAbout": [
+    "sviluppo software su misura",
+    "implementazione AI per PMI",
+    "server AI locali",
+    "workstation AI assemblaggio",
+    "consulenza cybersecurity",
+    "automazione processi aziendali",
+    "gestionali su misura",
+    "sistemi di prenotazione personalizzati",
+    "AI-first development",
+    "GDPR compliance AI",
+    "LLM locale per aziende"
+  ],
+  "taxID": "IT12620720966"
+};
+---
+
+<BaseLayout 
+  title="Chi Siamo | KriptyLab" 
+  description="Siamo ingegneri del software e dell'infrastruttura. Sviluppo software su misura, intelligenza artificiale locale e cybersecurity per PMI italiane."
+  schema={organizationSchema}
+>
+  <!-- Hero Section -->
   <section class="hero-page">
     <div class="container">
       <div class="reveal-up">
-        <span class="badge">Il Team</span>
+        <span class="badge">Il Manifesto</span>
       </div>
-      <h1 class="page-title reveal-up delay-100">Zero agenzie.<br/><span class="text-gradient">Solo Ingegneria.</span></h1>
+      <h1 class="page-title reveal-up delay-100">
+        Zero agenzie.<br/>
+        <span class="text-gradient">Solo Ingegneria.</span>
+      </h1>
       <p class="page-subtitle reveal-up delay-200">
-        KriptyLab nasce per colmare un vuoto: le PMI italiane hanno bisogno di architetture solide, scalabili e sicure, non di "siti vetrina" venduti a peso d'oro da agenzie generaliste.
+        KriptyLab nasce per colmare un vuoto nel mercato italiano: le PMI e gli studi professionali non hanno bisogno di fuffa commerciale o siti vetrina preconfezionati a prezzi gonfiati. Hanno bisogno di architetture stabili, codice performante, intelligenza artificiale locale e cybersecurity proattiva.
       </p>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container about-cards">
-      <div class="card about-card reveal-up delay-300">
-        <div class="about-card-inner">
-          <div class="about-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>
-            </svg>
-          </div>
-          <h2>L'Approccio "Bare Metal"</h2>
-          <p>Eliminiamo i livelli di astrazione inutili. Scriviamo codice pulito, ottimizzato per le prestazioni, e configuriamo i server direttamente. Questo significa siti che caricano in frazioni di secondo e gestionali che non crollano sotto carico.</p>
+  <!-- Stats Section -->
+  <section class="section stats-section section-border">
+    <div class="container">
+      <div class="stats-grid reveal-up">
+        <div class="stat-item">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Progetti Consegnati</span>
         </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">10+</span>
+          <span class="stat-label">Soluzioni Custom</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">12</span>
+          <span class="stat-label">Settori Coperti</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">99.9%</span>
+          <span class="stat-label">Uptime dei Sistemi</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Valori / Approccio Section -->
+  <section class="section values-section section-border">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <h2>Il Nostro Approccio</h2>
+        <div class="line"></div>
+      </div>
+      
+      <div class="values-grid">
+        <!-- Card 1: Bare Metal -->
+        <div class="card value-card reveal-up delay-100">
+          <div class="value-card-inner">
+            <div class="icon-container">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>
+              </svg>
+            </div>
+            <h3>Filosofia "Bare Metal"</h3>
+            <p>
+              Eliminiamo i livelli di astrazione inutili. Scriviamo codice pulito, ottimizzato per le prestazioni, e configuriamo direttamente i sistemi operativi e i server. Ciò garantisce carichi istantanei, stabilità estrema e l'assenza di canoni nascosti per licenze di terze parti.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2: AI Locale -->
+        <div class="card value-card reveal-up delay-200">
+          <div class="value-card-inner">
+            <div class="icon-container">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <h3>AI Locale & Privacy</h3>
+            <p>
+              Riteniamo che i dati aziendali debbano rimanere di proprietà esclusiva del cliente. Progettiamo ed eseguiamo modelli linguistici (LLM locali, RAG e chatbot) direttamente su server fisici aziendali o cloud privati protetti. Nessun dato sensibile viene inviato a terze parti esterne.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3: Zero Intermediari -->
+        <div class="card value-card reveal-up delay-300">
+          <div class="value-card-inner">
+            <div class="icon-container">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3>Ingegneri, Non Venditori</h3>
+            <p>
+              Parli direttamente con chi scrive il codice e configura i server. Eliminiamo figure commerciali e project manager generalisti che allungano i tempi di comunicazione e gonfiano i costi. Questo approccio agile permette soluzioni precise e consegne rapide.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 4: Hardware + Software -->
+        <div class="card value-card reveal-up delay-400">
+          <div class="value-card-inner">
+            <div class="icon-container">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3>Full-Stack Fisico e Digitale</h3>
+            <p>
+              Siamo l'unico studio IT in Italia che unisce sotto un unico tetto lo sviluppo software a basso livello, l'integrazione di intelligenza artificiale, la cybersicurezza e l'assemblaggio di workstation o server fisici dedicati. Dal silicio all'interfaccia utente.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team / Ruoli Section -->
+  <section class="section team-section section-border">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <h2>I Nostri Ruoli Chiave</h2>
+        <div class="line"></div>
       </div>
 
-      <div class="card about-card reveal-up delay-400">
-        <div class="about-card-inner">
-          <div class="about-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-            </svg>
+      <div class="team-grid">
+        <!-- Membro 1 -->
+        <div class="card team-card reveal-up delay-100">
+          <div class="team-card-inner">
+            <span class="role-badge">Sistemi & Infrastruttura AI</span>
+            <h3>Lead Hardware & AI Architect</h3>
+            <p class="team-bio">
+              Architetto dell'infrastruttura ed esperto di sistemi fisici. Si occupa dell'ingegnerizzazione e assemblaggio di server di calcolo dedicati, workstation per intelligenza artificiale locale, hardening dei sistemi operativi e integrazione dei motori LLM tramite API o motori locale (Ollama, RAG, database vettoriali).
+            </p>
+            <div class="specialties">
+              <span class="tag-neutral tag">LLM locale</span>
+              <span class="tag-neutral tag">Server Setup</span>
+              <span class="tag-neutral tag">Cybersecurity</span>
+              <span class="tag-neutral tag">Proxmox</span>
+            </div>
           </div>
-          <h2>Privacy e AI On-Premise</h2>
-          <p>Nell'era dell'Intelligenza Artificiale, i dati sono il tuo vero asset. Implementiamo LLM (Modelli Linguistici) direttamente sui server locali o su cloud privati europei. Nessun dato sensibile viene inviato a terze parti.</p>
+        </div>
+
+        <!-- Membro 2 -->
+        <div class="card team-card reveal-up delay-200">
+          <div class="team-card-inner">
+            <span class="role-badge">Sviluppo Applicativo & Automazione</span>
+            <h3>Lead Software Engineer</h3>
+            <p class="team-bio">
+              Ingegnere del software specializzato in architetture applicative moderne e scalabili. Gestisce lo sviluppo di gestionali aziendali personalizzati (CRM, ERP), l'integrazione di web app complesse ed e-commerce ad alte prestazioni, oltre a flussi di automazione dei processi aziendali e-mail, fatturazione e sincronizzazione API.
+            </p>
+            <div class="specialties">
+              <span class="tag-neutral tag">Next.js / Astro</span>
+              <span class="tag-neutral tag">SaaS Architecture</span>
+              <span class="tag-neutral tag">Process Automation</span>
+              <span class="tag-neutral tag">API integrations</span>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Trasparenza Legale Section -->
+  <section class="section legal-section section-border">
+    <div class="container">
+      <div class="card-glass legal-box reveal-up">
+        <div class="legal-box-inner">
+          <div class="legal-header">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shield-icon">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <h2>Una Società Reale per PMI Reali</h2>
+          </div>
+          <p class="legal-text">
+            KriptyLab non è un'associazione informale di freelancer né un'agenzia estera fittizia. Siamo un brand registrato gestito interamente da <strong>Shazark Srl</strong>, società di diritto italiano operante nei settori dello sviluppo software, assemblaggio hardware ed AI. Offriamo contratti solidi, accordi di riservatezza (NDA) ferrei e fatturazione trasparente.
+          </p>
+          <div class="legal-details">
+            <div class="detail-item">
+              <span class="detail-label">Ragione Sociale</span>
+              <span class="detail-value">Shazark Srl</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Partita IVA / Cod. Fiscale</span>
+              <span class="detail-value">IT12620720966</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Sede Operativa</span>
+              <span class="detail-value">Italia</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Modello di Lavoro</span>
+              <span class="detail-value">100% Sviluppo in-house (No subappalto)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="section section-border cta-section">
+    <div class="container text-center reveal-up">
+      <h2 class="cta-title">Hai una sfida tecnica da sottoporci?</h2>
+      <p class="cta-subtitle">
+        Parla direttamente con i nostri ingegneri per una prima valutazione di fattibilità tecnica del tuo progetto, senza intermediari o venditori.
+      </p>
+      <a href="/contatti" class="btn btn-primary btn-lg">
+        Contatta il Team Tecnico
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </section>
 </BaseLayout>
 
 <style>
+  /* Hero Page */
   .hero-page {
-    padding: 8rem 0 3rem;
-    border-bottom: 1px solid var(--color-border);
+    padding: 8rem 0 4rem;
     position: relative;
+    overflow: hidden;
   }
   .hero-page::before {
     content: '';
@@ -55,40 +267,107 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 700px;
+    width: 800px;
     height: 400px;
-    background: radial-gradient(ellipse, rgba(0, 122, 255, 0.05) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(0, 122, 255, 0.08) 0%, transparent 70%);
     pointer-events: none;
   }
   .page-title {
-    font-size: clamp(2.5rem, 5vw, 5rem);
-    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
     letter-spacing: -0.04em;
     margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
   }
   .page-subtitle {
-    font-size: 1.15rem;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
     color: var(--color-text-secondary);
-    max-width: 640px;
-    text-wrap: balance;
+    max-width: 720px;
     line-height: 1.7;
+    text-wrap: balance;
   }
 
-  .about-cards {
+  /* Stats Section */
+  .stats-section {
+    padding: 3rem 0;
+    background: rgba(255, 255, 255, 0.01);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (min-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+  }
+  .stat-item {
+    text-align: center;
+    padding: 1rem;
+  }
+  .stat-number {
+    display: block;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    color: var(--color-text-primary);
+    font-family: var(--font-display);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+  .stat-divider {
+    display: none;
+    width: 1px;
+    height: 50px;
+    background: var(--color-border);
+    margin: 0 auto;
+  }
+  @media (min-width: 768px) {
+    .stat-divider {
+      display: block;
+    }
+    .stats-grid {
+      grid-template-columns: 1fr 1px 1fr 1px 1fr 1px 1fr;
+    }
+  }
+
+  /* Values Section */
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  @media (min-width: 768px) {
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .value-card-inner {
+    padding: 2.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    max-width: 800px;
+    height: 100%;
   }
-
-  .about-card-inner {
-    padding: 2.5rem;
-  }
-
-  .about-icon {
-    width: 52px;
-    height: 52px;
+  .icon-container {
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,18 +376,154 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     border: 1px solid var(--color-accent-border);
     color: var(--color-accent);
     margin-bottom: 1.5rem;
+    transition: transform var(--duration-base) var(--ease-out-expo);
   }
-
-  .about-card h2 {
-    font-size: 1.5rem;
+  .value-card:hover .icon-container {
+    transform: scale(1.1);
+  }
+  .value-card h3 {
+    font-size: 1.35rem;
     font-weight: 700;
     margin-bottom: 1rem;
     letter-spacing: -0.02em;
   }
-
-  .about-card p {
-    font-size: 1rem;
+  .value-card p {
+    font-size: 14px;
     color: var(--color-text-secondary);
     line-height: 1.7;
+  }
+
+  /* Team Section */
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  @media (min-width: 768px) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .team-card-inner {
+    padding: 3rem 2.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .role-badge {
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+  .team-card h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.03em;
+  }
+  .team-bio {
+    font-size: 14.5px;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+  }
+  .specialties {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .specialties .tag {
+    font-size: 11px;
+    padding: 0.35rem 0.75rem;
+  }
+
+  /* Legal Section */
+  .legal-box-inner {
+    padding: 3.5rem;
+  }
+  .legal-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .shield-icon {
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+  .legal-header h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  .legal-text {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 850px;
+  }
+  .legal-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 2rem;
+  }
+  @media (min-width: 640px) {
+    .legal-details {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .legal-details {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .detail-label {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+  .detail-value {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    background: radial-gradient(circle at bottom, rgba(0, 122, 255, 0.05) 0%, transparent 60%);
+    padding: 6rem 0;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .cta-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+  }
+  .cta-subtitle {
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+    text-wrap: balance;
   }
 </style>

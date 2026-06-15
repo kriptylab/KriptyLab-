@@ -14,7 +14,7 @@ Noi di KriptyLab crediamo nell'approccio *Bare Metal* e "Zero Fuffa". Non siamo 
 
 - **Performance Estreme**: Ottimizzazione del codice e architettura server-side per garantire latenza minima.
 - **Sicurezza by-design**: Applicazione rigorosa dei protocolli di cybersecurity fin dalla fase di progettazione.
-- **Controllo Totale**: Sviluppo di infrastrutture cloud-agnostic o server on-premise per darti la proprietà esclusiva dei tuoi dati.
+- **Controllo Totale**: Sviluppo di infrastrutture cloud-agnostic o server locali per darti la proprietà esclusiva dei tuoi dati.
 
 ### Perché KriptyLab?
 
