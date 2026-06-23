@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceConfigurator from '../../components/ServiceConfigurator.astro';
 
 export async function getStaticPaths() {
   const serviziEntries = await getCollection('servizi');
@@ -40,10 +41,8 @@ const { Content } = await render(entry);
     </section>
 
     <section class="section section-border">
-      <div class="container cta-detail reveal-up">
-        <h2>Interessato a questo servizio?</h2>
-        <p>Parla direttamente con un nostro architetto software.</p>
-        <a href="/contatti" class="btn btn-primary btn-lg">Richiedi Consulenza</a>
+      <div class="container">
+        <ServiceConfigurator slug={entry.id} />
       </div>
     </section>
   </article>

@@ -80,6 +80,12 @@
   padding: 0;
 }
 
+img, svg, video, canvas, audio, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 html {
   font-family: var(--font-body);
   background-color: var(--color-bg);
@@ -364,6 +370,20 @@ strong {
   height: 1px;
   width: 100%;
   background: var(--color-border);
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+  .section-header h2 {
+    white-space: normal;
+  }
+  .section-header .line {
+    display: none;
+  }
 }
 
 

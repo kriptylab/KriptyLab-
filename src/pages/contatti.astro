@@ -1,4 +1,4 @@
-﻿---
+---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="Contatti | KriptyLab" description="Parla con i nostri architetti software per il tuo prossimo progetto IT.">
@@ -93,7 +93,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .form-inner {
-    padding: 2.5rem;
+    padding: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .form-inner { padding: 2.5rem; }
   }
 
   @media (min-width: 768px) {
